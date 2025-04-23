@@ -1,0 +1,47 @@
+<!-- templates/base.html -->
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Luxe Stays India - Luxury Content Creation & Social Media Marketing for Hospitality">
+    <title>{% block title %}Luxe Stays India{% endblock %}</title>
+    <!-- Tailwind CSS -->
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <a href="/" class="text-3xl font-semibold text-gray-800">Luxe Stays India</a>
+            <nav class="space-x-6">
+                <a href="/" class="text-lg text-gray-700 hover:text-blue-600">Home</a>
+                <a href="/services" class="text-lg text-gray-700 hover:text-blue-600">Services</a>
+                <a href="/about" class="text-lg text-gray-700 hover:text-blue-600">About</a>
+                <a href="/contact" class="text-lg text-gray-700 hover:text-blue-600">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Luxe Stays India. All rights reserved.</p>
+            <p>Contact: luxestaysindia@gmail.com | Phone: 9918997999</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!-- templates/website/home.html -->
+{% extends 'website/base.html' %}
+
+{% load static %}
+
+{% block title %}Home - Luxe Stays India{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section
+    class="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white h-screen flex flex-col justify-center items-center text-center">
+    <h1 class="text-5xl font-extrabold mb-4 animate__animated animate__fadeIn">Welcome to Luxe Stays India</h1>
+    <p class="text-xl mb-8 animate__animated animate__fadeIn animate__delay-1s">Content Creation & Social Media
+        Marketing for Luxury Hospitality</p>
+    <a href="#services"
+        class="px-8 py-3 bg-white text-gray-800 font-semibold text-lg rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">Discover
+        Our Services</a>
+</section>
+
+<!-- About Us Section -->
+<section class="py-16 bg-gray-50" id="about">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-semibold text-gray-800 mb-8">About Us</h2>
+        <p class="text-xl text-gray-600 mb-8">Luxe Stays India specializes in creating high-quality content for
+            hospitality brands, helping them showcase their properties in the best possible light.</p>
+        <p class="text-xl text-gray-600 mb-8">We create emotional connections with viewers, encouraging them to choose
+            your property for their next stay. From professional photography to engaging social media reels, we offer
+            comprehensive services.</p>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-16" id="services">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-semibold mb-8">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- Service 1 -->
+            <div
+                class="bg-white text-gray-800 rounded-lg shadow-xl p-6 transform hover:scale-105 transition-all duration-300">
+                <h3 class="text-2xl font-semibold mb-4">Shoots & Social Media Marketing</h3>
+                <p class="text-lg">Professional videos, stunning photography, and engaging social media content tailored
+                    for the hospitality industry.</p>
+            </div>
+            <!-- Service 2 -->
+            <div
+                class="bg-white text-gray-800 rounded-lg shadow-xl p-6 transform hover:scale-105 transition-all duration-300">
+                <h3 class="text-2xl font-semibold mb-4">Profile Audit & Optimization</h3>
+                <p class="text-lg">We analyze and optimize your social media profiles to maximize visibility and
+                    engagement with your target audience.</p>
+            </div>
+            <!-- Service 3 -->
+            <div
+                class="bg-white text-gray-800 rounded-lg shadow-xl p-6 transform hover:scale-105 transition-all duration-300">
+                <h3 class="text-2xl font-semibold mb-4">Strategy Development</h3>
+                <p class="text-lg">We help develop social media strategies that align with your brand’s goals, ensuring
+                    sustained growth and engagement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Founders Section -->
+<section class="py-16 bg-white" id="founders">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-semibold text-gray-800 mb-8">Meet the Founders</h2>
+        <div class="flex justify-center items-center space-x-8">
+            <!-- Founder 1: Purvi -->
+            <div class="w-48 h-48 rounded-full bg-gray-200 p-4 flex justify-center items-center">
+                <img src="{% static 'images/purvi.jpg' %}" alt="Purvi Bhushan"
+                    class="rounded-full w-full h-full object-cover">
+            </div>
+            <!-- Founder 2: Rushmi -->
+            <div class="w-48 h-48 rounded-full bg-gray-200 p-4 flex justify-center items-center">
+                <img src="{% static 'images/rushmi.jpg' %}" alt="Rushmi Behrani"
+                    class="rounded-full w-full h-full object-cover">
+            </div>
+        </div>
+        <p class="text-xl text-gray-600 mt-8">Purvi and Rushmi bring together expertise in social media marketing and
+            content creation to help luxury hospitality brands stand out in the competitive market.</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-16 bg-gray-800 text-white" id="contact">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-semibold mb-8">Contact Us</h2>
+        <p class="text-lg mb-8">For inquiries or collaborations, reach out to us directly at:</p>
+        <p class="text-xl mb-4">Phone: 9918997999</p>
+        <p class="text-xl">Email: luxestaysindia@gmail.com</p>
+    </div>
+</section>
+{% endblock %}
