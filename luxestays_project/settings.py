@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f(kp%w^6m^s%&rf&j6cwbawljw4gg5)u-w*9q@60g&01gjdeo6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'website',
     'tailwind',
     'theme',
-    'django_browser_reload',
 ]
 
 TAILWIND_APP_NAME = 'theme'
