@@ -1,5 +1,5 @@
 # Step 1: Use an official Python runtime as a parent image
-FROM python:3.12-slim
+FROM ghcr.io/python:3.12-slim  # GitHub Container Registry
 
 # Step 2: Set the working directory in the container
 WORKDIR /app
