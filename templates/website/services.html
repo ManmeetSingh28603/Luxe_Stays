@@ -1,21 +1,126 @@
-<!-- templates/website/services.html -->
 {% extends 'website/base.html' %}
 {% load static %}
 
 {% block title %}Our Services - Luxe Stays India{% endblock %}
 
 {% block content %}
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-semibold text-gray-800 mb-8">Our Services</h2>
-        <p class="text-xl text-gray-600 mb-8">We specialize in creating high-quality content and managing social media
-            for luxury hospitality brands.</p>
-        <ul class="list-disc text-left text-lg text-gray-600">
-            <li>Professional Photography and Videography</li>
-            <li>Social Media Marketing and Strategy</li>
-            <li>Content Creation and Curation</li>
-            <li>Audience Engagement and Advertising</li>
-        </ul>
+
+<!-- Hero Section -->
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] text-center">
+    <div class="container mx-auto px-4 animate__animated animate__fadeInDown">
+        <h1 class="text-5xl font-bold mb-6">Our Services</h1>
+        <p class="text-xl max-w-2xl mx-auto">
+            At Luxe Stays India, we empower luxury hospitality brands with compelling visuals and strategic digital
+            storytelling.
+        </p>
     </div>
 </section>
+
+<!-- Core Offerings Section -->
+<section class="py-20 bg-[#F5EFE6] text-[#C17C5E]">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-semibold mb-12 animate__animated animate__fadeInUp">What We Offer</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 animate__animated animate__fadeIn">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300">
+                <h3 class="text-2xl font-bold mb-4">Photography & Videography</h3>
+                <ul class="text-lg space-y-2 text-gray-700 text-left">
+                    <li>Property Tours</li>
+                    <li>Event Coverage</li>
+                    <li>Promotional Videos</li>
+                    <li>Food & Dining</li>
+                </ul>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300">
+                <h3 class="text-2xl font-bold mb-4">Social Media Marketing</h3>
+                <ul class="text-lg space-y-2 text-gray-700 text-left">
+                    <li>Reels & Seasonal Clips</li>
+                    <li>Instagram Advertising</li>
+                    <li>Audience Engagement</li>
+                    <li>Performance Analysis</li>
+                </ul>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300">
+                <h3 class="text-2xl font-bold mb-4">Profile Optimization</h3>
+                <ul class="text-lg space-y-2 text-gray-700 text-left">
+                    <li>Audit Existing Profiles</li>
+                    <li>Content Calendar Setup</li>
+                    <li>Hashtag & Caption Strategy</li>
+                    <li>Highlight Styling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Destinations Section -->
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6]">
+    <div class="container mx-auto px-6 text-center animate__animated animate__fadeInUp">
+        <h2 class="text-4xl font-semibold mb-12">Where We've Worked</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            <!-- Loop of properties from Excel sheet -->
+            <div class="bg-[#F5EFE6] text-[#C17C5E] p-6 rounded-xl shadow hover:scale-105 transition">
+                <h3 class="text-xl font-bold mb-2">Yuyiii Stays – Pan India</h3>
+                <a href="https://www.instagram.com/yuyiiistays/" target="_blank"
+                    class="underline text-blue-700 hover:text-blue-900">
+                    View Instagram
+                </a>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] p-6 rounded-xl shadow hover:scale-105 transition">
+                <h3 class="text-xl font-bold mb-2">Panchtatva – Mukteshwar</h3>
+                <a href="https://www.instagram.com/panchtatva.mukteshwar/" target="_blank"
+                    class="underline text-blue-700 hover:text-blue-900">
+                    View Instagram
+                </a>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] p-6 rounded-xl shadow hover:scale-105 transition">
+                <h3 class="text-xl font-bold mb-2">Posh Homes – Gurgaon</h3>
+                <a href="https://www.instagram.com/poshhomes/" target="_blank"
+                    class="underline text-blue-700 hover:text-blue-900">
+                    View Instagram
+                </a>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] p-6 rounded-xl shadow hover:scale-105 transition">
+                <h3 class="text-xl font-bold mb-2">Avana Hills – Dehradun</h3>
+                <a href="https://www.instagram.com/avanahills/" target="_blank"
+                    class="underline text-blue-700 hover:text-blue-900">
+                    View Instagram
+                </a>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] p-6 rounded-xl shadow hover:scale-105 transition">
+                <h3 class="text-xl font-bold mb-2">Wildflower – Goa</h3>
+                <a href="https://www.instagram.com/wildflower.goa/" target="_blank"
+                    class="underline text-blue-700 hover:text-blue-900">
+                    View Instagram
+                </a>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] p-6 rounded-xl shadow hover:scale-105 transition">
+                <h3 class="text-xl font-bold mb-2">Amaya Villas – Goa</h3>
+                <a href="https://www.instagram.com/amayavillasgoa/" target="_blank"
+                    class="underline text-blue-700 hover:text-blue-900">
+                    View Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Collaboration Pitch -->
+<section class="py-20 bg-[#F5EFE6] text-[#C17C5E] text-center">
+    <div class="container mx-auto px-6 max-w-3xl animate__animated animate__fadeInUp">
+        <h2 class="text-3xl font-bold mb-4">Why Collaborate With Us?</h2>
+        <p class="text-lg text-gray-700 mb-6">
+            We’ve built a dedicated audience of over 55,000 luxury travelers on Instagram in just 60 days —
+            and we’re just getting started. Partnering with us gives your brand exposure across an engaged
+            audience that trusts our curation.
+        </p>
+        <a href="https://www.instagram.com/luxestaysindia/" target="_blank"
+            class="inline-block bg-[#C17C5E] text-[#F5EFE6] px-8 py-3 rounded-full font-semibold hover:bg-[#a66045] transition-all duration-300">
+            View Our Instagram
+        </a>
+    </div>
+</section>
+
 {% endblock %}

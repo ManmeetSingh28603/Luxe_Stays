@@ -1,6 +1,6 @@
-<!-- templates/base.html -->
+<!-- templates/website/base.html -->
 {% load static %}
-{% load static tailwind_tags %}
+{% load tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,38 +10,91 @@
     <meta name="description"
         content="Luxe Stays India - Luxury Content Creation & Social Media Marketing for Hospitality">
     <title>{% block title %}Luxe Stays India{% endblock %}</title>
-    <!-- Tailwind CSS -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     {% tailwind_css %}
 </head>
 
-<body class="bg-gray-50 font-sans">
+<body class="bg-[#F5EFE6] font-sans overflow-x-hidden">
 
     <!-- Header Section -->
-    <header class="bg-white shadow-md py-4">
+    <header class="bg-[#C17C5E] shadow-md py-4 text-[#F5EFE6]">
         <div class="container mx-auto flex justify-between items-center px-6">
-            <a href="/" class="text-3xl font-semibold text-gray-800">Luxe Stays India</a>
-            <nav class="space-x-6">
+            <a href="/" class="text-3xl font-semibold">Luxe Stays India</a>
+
+            <!-- Desktop Navbar -->
+            <nav class="hidden md:flex space-x-6 text-[#F5EFE6]">
+                <a href="/" class="text-lg hover:text-blue-600">Home</a>
+                <a href="/services" class="text-lg hover:text-blue-600">Services</a>
+                <a href="/about" class="text-lg hover:text-blue-600">About</a>
+                <a href="/contact" class="text-lg hover:text-blue-600">Contact</a>
+            </nav>
+
+            <!-- Hamburger Icon -->
+            <div class="md:hidden z-50">
+                <button id="menu-toggle" class="flex flex-col justify-center w-8 h-5 space-y-1 focus:outline-none">
+                    <span
+                        class="hamburger-bar transition-all duration-300 ease-in-out bg-gray-800 h-2 w-full rounded"></span>
+                    <span
+                        class="hamburger-bar transition-all duration-300 ease-in-out bg-gray-800 h-2 w-full rounded"></span>
+                    <span
+                        class="hamburger-bar transition-all duration-300 ease-in-out bg-gray-800 h-2 w-full rounded"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar Menu -->
+        <div id="mobile-menu"
+            class="fixed top-0 right-0 w-64 h-full bg-[#fff9f5] shadow-lg transform translate-x-full transition-transform duration-500 ease-in-out z-40">
+            <div class="p-6 flex flex-col space-y-6">
                 <a href="/" class="text-lg text-gray-700 hover:text-blue-600">Home</a>
                 <a href="/services" class="text-lg text-gray-700 hover:text-blue-600">Services</a>
                 <a href="/about" class="text-lg text-gray-700 hover:text-blue-600">About</a>
                 <a href="/contact" class="text-lg text-gray-700 hover:text-blue-600">Contact</a>
-            </nav>
+            </div>
         </div>
     </header>
-
-    <!-- Main Content -->
-    <main>
+    <!-- Main Content Area -->
+    <main class="pt-5">
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="container mx-auto text-center">
+    <footer class="bg-[#C17C5E] text-[#F5EFE6] py-8 mt-5">
+        <div class="container mx-auto text-center space-y-2">
             <p>&copy; 2025 Luxe Stays India. All rights reserved.</p>
-            <p>Contact: luxestaysindia@gmail.com | Phone: 9918997999</p>
+            <p>Contact: luxestaysindia@gmail.com</p>
         </div>
     </footer>
 
+    <!-- Mobile Menu Script -->
+
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const bars = document.querySelectorAll('.hamburger-bar');
+        let menuOpen = false;
+
+        toggleBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+
+                // Animate hamburger to X
+                bars[0].classList.add('rotate-45', 'translate-y-2');
+                bars[1].classList.add('opacity-0');
+                bars[2].classList.add('-rotate-45', '-translate-y-2');
+            } else {
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('translate-x-full');
+
+                // Animate X back to hamburger
+                bars[0].classList.remove('rotate-45', 'translate-y-2');
+                bars[1].classList.remove('opacity-0');
+                bars[2].classList.remove('-rotate-45', '-translate-y-2');
+            }
+        });
+    </script>
 </body>
 
 </html>

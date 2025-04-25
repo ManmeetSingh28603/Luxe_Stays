@@ -4,69 +4,87 @@
 {% block title %}Contact Us - Luxe Stays India{% endblock %}
 
 {% block content %}
-<section class="py-16 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-    <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-semibold mb-8">Contact Us</h2>
-        <p class="text-lg mb-8">We'd love to hear from you! Whether you're looking to collaborate, ask a question, or
-            inquire about our services, feel free to reach out.</p>
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6]">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-5xl font-bold mb-6">Contact Luxe Stays India</h2>
+        <p class="text-xl mb-12 max-w-2xl mx-auto">We'd love to hear from you. Whether you're looking for a dream
+            vacation, partnership, or have questions, we're here for you.</p>
     </div>
 </section>
 
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto text-center">
-        <h3 class="text-3xl font-semibold text-gray-800 mb-6">Get in Touch</h3>
-        <p class="text-xl text-gray-600 mb-8">You can contact us directly using the form below, or reach out to us via
-            phone or email.</p>
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-12 flex flex-col lg:flex-row gap-12 items-center justify-center">
+
+        <!-- Contact Info -->
+        <div class="w-full lg:w-1/2 space-y-8 text-center lg:text-left">
+            <h3 class="text-3xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
+            <p class="text-lg text-gray-600 max-w-md mx-auto lg:mx-0">You can reach us via phone, email, or by filling
+                out the form. We'll get back to you as soon as possible.</p>
+
+            <div class="space-y-4 mt-8">
+                <div class="flex items-center justify-center lg:justify-start gap-4">
+                    <span class="text-2xl text-[#c08457]">📞</span>
+                    <p class="text-lg">Phone: <a href="tel:9918997999"
+                            class="text-blue-700 hover:underline">9918997999</a></p>
+                </div>
+                <div class="flex items-center justify-center lg:justify-start gap-4">
+                    <span class="text-2xl text-[#c08457]">📧</span>
+                    <p class="text-lg">Email: <a href="mailto:luxestaysindia@gmail.com"
+                            class="text-blue-700 hover:underline">luxestaysindia@gmail.com</a></p>
+                </div>
+                <div class="flex items-center justify-center lg:justify-start gap-4">
+                    <span class="text-2xl text-[#c08457]">🌐</span>
+                    <p class="text-lg">Website: <a href="https://www.luxestaysindia.com" target="_blank"
+                            class="text-blue-700 hover:underline">www.luxestaysindia.com</a></p>
+                </div>
+            </div>
+        </div>
 
         <!-- Contact Form -->
-        <div class="max-w-xl mx-auto">
-            <form action="#" method="POST" class="space-y-6">
-                <div class="flex space-x-4">
-                    <!-- Name Input -->
-                    <div class="w-full">
-                        <label for="name" class="block text-left text-gray-800 font-semibold">Your Name</label>
-                        <input type="text" id="name" name="name"
-                            class="w-full p-3 mt-2 border border-gray-300 rounded-lg" placeholder="Enter your name"
-                            required>
+        <div class="w-full lg:w-1/2 flex justify-center">
+            <div class="w-full max-w-lg bg-[#fff9f5] p-8 rounded-2xl shadow-xl">
+                <form action="#" method="POST" class="space-y-6">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="w-full">
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Your Name</label>
+                            <input type="text" id="name" name="name"
+                                class="w-full p-3 border border-gray-300 rounded-xl focus:border-[#c08457] focus:ring-1 focus:ring-[#c08457]"
+                                placeholder="Enter your name" required>
+                        </div>
+                        <div class="w-full">
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Your Email</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full p-3 border border-gray-300 rounded-xl focus:border-[#c08457] focus:ring-1 focus:ring-[#c08457]"
+                                placeholder="Enter your email" required>
+                        </div>
                     </div>
 
-                    <!-- Email Input -->
-                    <div class="w-full">
-                        <label for="email" class="block text-left text-gray-800 font-semibold">Your Email</label>
-                        <input type="email" id="email" name="email"
-                            class="w-full p-3 mt-2 border border-gray-300 rounded-lg" placeholder="Enter your email"
-                            required>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">Your Message</label>
+                        <textarea id="message" name="message" rows="5"
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:border-[#c08457] focus:ring-1 focus:ring-[#c08457]"
+                            placeholder="Write your message here" required></textarea>
                     </div>
-                </div>
 
-                <!-- Message Input -->
-                <div>
-                    <label for="message" class="block text-left text-gray-800 font-semibold">Your Message</label>
-                    <textarea id="message" name="message" rows="5"
-                        class="w-full p-3 mt-2 border border-gray-300 rounded-lg" placeholder="Write your message here"
-                        required></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <div>
-                    <button type="submit"
-                        class="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300">Send
-                        Message</button>
-                </div>
-            </form>
+                    <div>
+                        <button type="submit"
+                            class="w-full py-3 px-6 bg-[#c08457] text-white font-bold rounded-xl hover:bg-[#a56a3c] transition-all duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
+
     </div>
 </section>
 
-<section class="py-16 bg-gray-800 text-white">
-    <div class="container mx-auto text-center">
-        <h3 class="text-3xl font-semibold mb-6">Other Ways to Reach Us</h3>
-        <p class="text-xl mb-4">You can also contact us through the following:</p>
-        <div class="space-y-4">
-            <p class="text-lg">📞 <span class="text-blue-300">Phone: 9918997999</span></p>
-            <p class="text-lg">📧 <span class="text-blue-300">Email: luxestaysindia@gmail.com</span></p>
-            <p class="text-lg">🌐 <span class="text-blue-300">Website: www.luxestaysindia.com</span></p>
-        </div>
+<section class="py-16 bg-[#F5EFE6]">
+    <div class="container mx-auto text-center px-4 text-[#C17C5E]">
+        <h3 class="text-3xl font-semibold mb-6">Visit Us</h3>
+        <p class="text-lg mb-4">Want to meet in person? Let’s arrange a coffee meeting and plan your next
+            dream stay.</p>
+        <p class="text-lg">Location: <span class="text-blue-700">Coming Soon!</span></p>
     </div>
 </section>
 {% endblock %}
