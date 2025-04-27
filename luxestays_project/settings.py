@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     'luxestaysindia.com',
     'www.luxestaysindia.com',
     'luxestays-production.up.railway.app',  # (or whatever your Railway subdomain is right now)
+    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
