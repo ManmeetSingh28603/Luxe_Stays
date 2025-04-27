@@ -31,13 +31,14 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'luxestaysindia.com',
     'www.luxestaysindia.com',
-    'your-railway-subdomain.up.railway.app',  # optional if still active
+    'luxestays-production.up.railway.app',  # (or whatever your Railway subdomain is right now)
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://luxestaysindia.com',
     'https://www.luxestaysindia.com',
-    'https://your-railway-subdomain.up.railway.app',  # optional if needed
+    'https://luxestaysindia-production.up.railway.app',  # must have https://
+    'https://luxestays-production.up.railway.app',
 ]
 
 # Application definition
