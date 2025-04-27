@@ -5,6 +5,7 @@
 
 {% block content %}
 {% load static %}
+
 <!-- Hero Section -->
 <section class="bg-[#C17C5E] text-[#F5EFE6] min-h-screen flex flex-col justify-center items-center text-center px-4">
     <h1 class="text-5xl md:text-6xl font-extrabold mb-6 animate__animated animate__fadeInDown">Welcome to Luxe Stays
@@ -27,6 +28,35 @@
             strategy development, we ensure your brand shines across all digital platforms.</p>
     </div>
 </section>
+
+<!-- Instagram Followers Section -->
+<section class="py-20 bg-[#F5EFE6]" id="instagram-followers">
+    <div class="container mx-auto text-center px-6">
+        <h2 class="text-4xl font-semibold text-[#C17C5E] mb-6">Instagram Followers</h2>
+        <p class="font-extrabold text-gray-800 leading-none" id="followerCount" style="font-size: 4rem;">0</p>
+        <!-- <-- Custom BIG size -->
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.umd.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("/get-followers/")
+            .then(response => response.json())
+            .then(data => {
+                const followers = data.followers;
+                const count = new countUp.CountUp('followerCount', followers, {
+                    duration: 4,          // slightly longer animation
+                    separator: ',',
+                    useEasing: true,      // very smooth easing motion
+                });
+                if (!count.error) {
+                    count.start();
+                } else {
+                    console.error(count.error);
+                }
+            });
+    });
+</script>
 
 <!-- Services Section -->
 <section class="py-20 bg-[#C17C5E] text-[#F5EFE6]" id="services">
