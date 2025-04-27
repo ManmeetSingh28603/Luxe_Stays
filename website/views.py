@@ -25,25 +25,42 @@ def contact(request):
         email = request.POST.get('email')
         message = request.POST.get('message')
 
+        # Save to DB
         ContactSubmission.objects.create(
             name=name,
             email=email,
             message=message
         )
 
+        # Email to Admin (you)
         subject = f"New Contact Form Submission from {name}"
         full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
 
         send_mail(
             subject,
             full_message,
-            email,  # From user's email
-            [os.getenv("EMAIL_HOST_USER")],  # Your email from .env
+            email,  # from user's email
+            [os.getenv("EMAIL_HOST_USER")],  # your admin email
             fail_silently=False,
         )
+        
+        # Email to User (confirmation)
+        user_subject = "Thank you for contacting Luxe Stays India!"
+        user_message = (
+            f"Dear {name},\n\n"
+            "Thank you for reaching out to Luxe Stays India! ✨\n"
+            "We have received your message and will get back to you shortly.\n\n"
+            "Warm regards,\n"
+            "The Luxe Stays India Team"
+        )
 
-        # Optional: success message
-        # messages.success(request, 'Thank you for contacting us! We will get back to you soon.')
+        send_mail(
+            user_subject,
+            user_message,
+            os.getenv("EMAIL_HOST_USER"),  # from your admin email
+            [email],  # to the user's email
+            fail_silently=False,
+        )
         return redirect('thank_you')
 
     return render(request, 'website/contact.html')
