@@ -28,8 +28,17 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'luxestaysindia.com',
+    'www.luxestaysindia.com',
+    'your-railway-subdomain.up.railway.app',  # optional if still active
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://luxestaysindia.com',
+    'https://www.luxestaysindia.com',
+    'https://your-railway-subdomain.up.railway.app',  # optional if needed
+]
 
 # Application definition
 
