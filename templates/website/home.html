@@ -1,7 +1,7 @@
 <!-- templates/website/home.html -->
 {% extends 'website/base.html' %}
 
-{% block title %}Home - Luxe Stays India{% endblock %}
+{% block title %}Luxe Stays India{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -10,7 +10,8 @@
 <section class="bg-[#C17C5E] text-[#F5EFE6] min-h-screen flex flex-col justify-center items-center text-center px-4">
     <h1 class="text-5xl md:text-6xl font-extrabold mb-6 animate__animated animate__fadeInDown">Welcome to Luxe Stays
         India</h1>
-    <p class="text-2xl md:text-3xl mb-8 animate__animated animate__fadeIn animate__delay-1s">Luxury Content Creation &
+    <p class="text-2xl md:text-3xl mb-8 animate__animated animate__fadeIn animate__delay-1s">Luxury Content Creation
+        &
         Social Media Marketing</p>
     <a href="#services"
         class="px-8 py-3 bg-[#F5EFE6] text-[#C17C5E] font-semibold text-lg rounded-full shadow-lg hover:bg-white transform hover:scale-105 transition-all duration-300">Discover
@@ -18,25 +19,30 @@
 </section>
 
 <!-- About Us Section -->
-<section class="py-20 bg-[#F5EFE6]" id="about">
-    <div class="container mx-auto text-center px-6">
-        <h2 class="text-4xl font-semibold text-[#C17C5E] mb-6">About Us</h2>
-        <p class="text-xl text-gray-700 mb-6">At Luxe Stays India, we specialize in creating captivating content for
-            luxury hospitality brands. Our goal is to emotionally connect audiences with your property, encouraging
-            bookings and loyalty.</p>
-        <p class="text-xl text-gray-700">With a team skilled in photography, videography, social media marketing, and
-            strategy development, we ensure your brand shines across all digital platforms.</p>
+<section class="py-10 bg-[#F5EFE6]" id="about">
+    <div class="container mx-auto px-6">
+        <div class="bg-white rounded-2xl shadow-xl p-10 max-w-5xl mx-auto text-center">
+            <h2 class="text-4xl font-semibold text-[#C17C5E] mb-6">About Us</h2>
+            <p class="text-xl text-gray-700 mb-6">At Luxe Stays India, we specialize in creating captivating content for
+                luxury hospitality brands. Our goal is to emotionally connect audiences with your property, encouraging
+                bookings and loyalty.</p>
+            <p class="text-xl text-gray-700">With a team skilled in photography, videography, social media marketing,
+                and strategy development, we ensure your brand shines across all digital platforms.</p>
+        </div>
     </div>
 </section>
 
 <!-- Instagram Followers Section -->
-<section class="py-20 bg-[#F5EFE6]" id="instagram-followers">
-    <div class="container mx-auto text-center px-6">
-        <h2 class="text-4xl font-semibold text-[#C17C5E] mb-6">Instagram Followers</h2>
-        <p class="font-extrabold text-gray-800 leading-none" id="followerCount" style="font-size: 4rem;">0</p>
-        <!-- <-- Custom BIG size -->
+<section class="py-10 bg-[#F5EFE6]" id="instagram-followers">
+    <div class="container mx-auto px-6">
+        <div class="bg-white rounded-2xl shadow-xl p-10 max-w-md mx-auto text-center">
+            <h2 class="text-4xl font-semibold text-[#C17C5E] mb-8">Instagram Followers</h2>
+            <p class="font-extrabold text-gray-800 leading-none" id="followerCount" style="font-size: 4rem;">0</p>
+            <p class="text-lg text-[#C17C5E] mt-4 font-semibold">Followers on Instagram</p>
+        </div>
     </div>
 </section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.umd.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -45,9 +51,9 @@
             .then(data => {
                 const followers = data.followers;
                 const count = new countUp.CountUp('followerCount', followers, {
-                    duration: 4,          // slightly longer animation
+                    duration: 4,
                     separator: ',',
-                    useEasing: true,      // very smooth easing motion
+                    useEasing: true,
                 });
                 if (!count.error) {
                     count.start();
@@ -55,8 +61,30 @@
                     console.error(count.error);
                 }
             });
+
+        // Platform Highlights Counters
+        const accountsEngaged = new countUp.CountUp('accountsEngaged', 2300000, {
+            duration: 4,
+            separator: ',',
+            useEasing: true,
+        });
+        const reach = new countUp.CountUp('reach', 250000, {
+            duration: 4,
+            separator: ',',
+            useEasing: true,
+        });
+        const followersGained = new countUp.CountUp('followersGained', 55200, {
+            duration: 4,
+            separator: ',',
+            useEasing: true,
+        });
+
+        if (!accountsEngaged.error) accountsEngaged.start();
+        if (!reach.error) reach.start();
+        if (!followersGained.error) followersGained.start();
     });
 </script>
+
 
 <!-- Services Section -->
 <section class="py-20 bg-[#C17C5E] text-[#F5EFE6]" id="services">
@@ -72,7 +100,8 @@
             <div
                 class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300">
                 <h3 class="text-2xl font-bold mb-4">Profile Optimization</h3>
-                <p class="text-lg">Audit and optimize your brand’s online profiles to maximize engagement, conversions,
+                <p class="text-lg">Audit and optimize your brand's online profiles to maximize engagement,
+                    conversions,
                     and brand trust.</p>
             </div>
             <div
@@ -86,19 +115,53 @@
 </section>
 
 <!-- Founders Section -->
-<section class="py-20 bg-[#F5EFE6]" id="founders">
+<section class="py-10 bg-[#F5EFE6]" id="founders" data-aos="fade-up">
     <div class="container mx-auto text-center px-6">
         <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12">Meet the Founders</h2>
         <div class="flex flex-wrap justify-center items-center gap-12">
-            <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg">
+            <div
+                class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-110 hover:shadow-2xl">
                 <img src="{% static 'images/purvi.jpg' %}" alt="Purvi Bhushan" class="w-full h-full object-cover">
             </div>
-            <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg">
+            <div
+                class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-110 hover:shadow-2xl">
                 <img src="{% static 'images/rushmi.jpg' %}" alt="Rushmi Behrani" class="w-full h-full object-cover">
             </div>
         </div>
-        <p class="text-xl text-gray-700 mt-8">Purvi and Rushmi combine their expertise in hospitality marketing and
-            content creation to help luxury brands succeed.</p>
+        <p class="text-xl text-gray-700 mt-8">
+            Purvi and Rushmi are the creative minds behind Luxe Stays India. Together, they bring a perfect blend of
+            strategic marketing expertise and visual storytelling. With a strong background in luxury travel, digital
+            branding, and hospitality marketing, they specialize in crafting premium content that drives engagement,
+            builds emotional connections, and elevates hotel and Airbnb brands across India.
+        </p>
+    </div>
+</section>
+
+<!-- Platform Highlights Section -->
+<section class="py-10 bg-[#F5EFE6]" id="platform-highlights">
+    <div class="container mx-auto px-6">
+        <div class="bg-white rounded-2xl shadow-xl p-10">
+            <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12 text-center">Our Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Accounts Engaged -->
+                <div class="text-center">
+                    <p class="font-extrabold text-gray-800 leading-none" id="accountsEngaged" style="font-size: 4rem;">0
+                    </p>
+                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold">Accounts Engaged</p>
+                </div>
+                <!-- Reach -->
+                <div class="text-center">
+                    <p class="font-extrabold text-gray-800 leading-none" id="reach" style="font-size: 4rem;">0</p>
+                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold">Reach</p>
+                </div>
+                <!-- Followers Gained -->
+                <div class="text-center">
+                    <p class="font-extrabold text-gray-800 leading-none" id="followersGained" style="font-size: 4rem;">0
+                    </p>
+                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold">Followers Gained</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 

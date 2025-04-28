@@ -20,18 +20,37 @@
 </head>
 
 <body class="bg-[#F5EFE6] font-sans overflow-x-hidden">
-
     <!-- Header Section -->
-    <header class="bg-[#C17C5E] shadow-md py-4 text-[#F5EFE6]">
+    <header class="bg-[#C17C5E] shadow-md py-0 text-[#F5EFE6]">
         <div class="container mx-auto flex justify-between items-center px-6">
-            <a href="/" class="text-3xl font-semibold">Luxe Stays India</a>
+            <a href="/" class="flex items-center space-x-3 text-3xl font-semibold text-[#F5EFE6]">
+                <img src="{% static 'images/favicon.ico' %}" alt="Luxe Stays India Logo"
+                    class="h-20 w-20 object-cover rounded-full">
+                <span>Luxe Stays India</span>
+            </a>
 
             <!-- Desktop Navbar -->
-            <nav class="hidden md:flex space-x-6 text-[#F5EFE6]">
-                <a href="/" class="text-lg hover:text-blue-600">Home</a>
-                <a href="/services" class="text-lg hover:text-blue-600">Services</a>
-                <a href="/about" class="text-lg hover:text-blue-600">About</a>
-                <a href="/contact" class="text-lg hover:text-blue-600">Contact</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="relative group text-lg font-medium text-[#F5EFE6]">
+                    Home
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="/services" class="relative group text-lg font-medium text-[#F5EFE6]">
+                    Services
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="/about" class="relative group text-lg font-medium text-[#F5EFE6]">
+                    About
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="/contact" class="relative group text-lg font-medium text-[#F5EFE6]">
+                    Contact
+                    <span
+                        class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                </a>
             </nav>
 
             <!-- Hamburger Icon -->
@@ -49,14 +68,39 @@
 
         <!-- Mobile Sidebar Menu -->
         <div id="mobile-menu"
-            class="fixed top-0 right-0 w-64 h-full bg-[#fff9f5] shadow-lg transform translate-x-full transition-transform duration-500 ease-in-out z-40">
-            <div class="p-6 flex flex-col space-y-6">
-                <a href="/" class="text-lg text-gray-700 hover:text-blue-600">Home</a>
-                <a href="/services" class="text-lg text-gray-700 hover:text-blue-600">Services</a>
-                <a href="/about" class="text-lg text-gray-700 hover:text-blue-600">About</a>
-                <a href="/contact" class="text-lg text-gray-700 hover:text-blue-600">Contact</a>
+            class="fixed top-0 right-0 w-64 h-full bg-[#C17C5E] shadow-lg transform translate-x-full transition-transform duration-500 ease-in-out z-40">
+            <div class="p-6 flex flex-col space-y-8">
+                <a href="/" class="group text-lg font-medium text-[#F5EFE6] inline-block relative">
+                    <span class="relative">
+                        Home
+                        <span
+                            class="absolute left-0 bottom-0 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                </a>
+                <a href="/services" class="group text-lg font-medium text-[#F5EFE6] inline-block relative">
+                    <span class="relative">
+                        Services
+                        <span
+                            class="absolute left-0 bottom-0 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                </a>
+                <a href="/about" class="group text-lg font-medium text-[#F5EFE6] inline-block relative">
+                    <span class="relative">
+                        About
+                        <span
+                            class="absolute left-0 bottom-0 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                </a>
+                <a href="/contact" class="group text-lg font-medium text-[#F5EFE6] inline-block relative">
+                    <span class="relative">
+                        Contact
+                        <span
+                            class="absolute left-0 bottom-0 w-0 h-0.5 bg-[#F5EFE6] transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                </a>
             </div>
         </div>
+
     </header>
     <!-- Main Content Area -->
     <main class="pt-5">

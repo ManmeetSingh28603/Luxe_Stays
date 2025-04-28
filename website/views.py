@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import os
 import requests
 from django.core.mail import send_mail
@@ -93,3 +93,51 @@ def get_instagram_followers(request):
     # print(f"Followers for luxestaysindia: {followers_count}")
 
     return JsonResponse({"followers": followers_count})
+
+def get_instagram_highlights(request):
+    url = "https://instagram120.p.rapidapi.com/api/instagram/highlights"
+
+    payload = {"username": "luxestaysindia"}
+    headers = {
+        "x-rapidapi-key": os.getenv("RAPIDAPI_KEY"),
+        "x-rapidapi-host": os.getenv("RAPIDAPI_HOST"),
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+    data = response.json()
+
+    try:
+        highlights = []
+        for item in data.get("result", []):    # <-- result is a LIST directly
+            title = item.get("title", "Unnamed Highlight")
+            if title.lower() != "about us":    # skip "About Us" highlight
+                highlights.append({
+                    "name": title,
+                    "image_url": item.get("cover_media", {}).get("cropped_image_version", {}).get("url", "")
+                })
+    except (KeyError, TypeError, IndexError) as e:
+        highlights = []
+
+    return JsonResponse({"highlights": highlights})
+
+
+from django.http import JsonResponse, HttpResponse
+import base64
+
+def proxy_image(request):
+    image_url = request.GET.get('url')
+    if not image_url:
+        return HttpResponse(status=400)
+
+    try:
+        resp = requests.get(image_url, stream=True, timeout=5)
+        resp.raise_for_status()  # Properly raise exceptions if failed
+        return HttpResponse(resp.content, content_type=resp.headers.get('Content-Type', 'image/jpeg'))
+    except requests.exceptions.RequestException:
+        # Instead of crashing, quietly return a 1x1 transparent GIF
+        pixel_base64 = (
+            'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='  # Transparent pixel
+        )
+        pixel = base64.b64decode(pixel_base64)
+        return HttpResponse(pixel, content_type='image/gif')
