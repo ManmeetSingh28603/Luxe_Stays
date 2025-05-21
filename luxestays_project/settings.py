@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     'www.luxestaysindia.com',
     'luxestays-production.up.railway.app',  # (or whatever your Railway subdomain is right now)
     '127.0.0.1',
+    'localhost'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -41,6 +42,14 @@ CSRF_TRUSTED_ORIGINS = [
     'https://luxestaysindia-production.up.railway.app',  # must have https://
     'https://luxestays-production.up.railway.app',
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache'),
+    }
+}
+
 
 # Application definition
 
@@ -152,6 +161,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static/',
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type

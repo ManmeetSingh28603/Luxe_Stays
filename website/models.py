@@ -9,3 +9,9 @@ class ContactSubmission(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.email}"
+    
+# models.py
+
+class ExcelData(models.Model):
+    file = models.FileField(upload_to='excel_files/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)

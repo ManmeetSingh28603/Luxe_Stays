@@ -1,24 +1,83 @@
+import os
+import random
+import base64
+import requests
+import pandas as pd
+
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
-import os
-import requests
 from django.core.mail import send_mail
-from django.contrib import messages
 from .models import ContactSubmission
+from django.core.cache import cache
 
-# Create your views here.
+# Fetch Excel Data
+from .models import ExcelData
+
+def read_excel_data():
+    latest_excel = ExcelData.objects.last()
+    if latest_excel:
+        df = pd.read_excel(latest_excel.file.path)
+        return df.to_dict(orient='records')
+    return []
+
+
+# -------------------------------
+# Basic Page Views
+# -------------------------------
+
 def home(request):
     return render(request, 'website/home.html')
 
-# Services page view
-def services(request):
-    return render(request, 'website/services.html')
 
-# About page view
 def about(request):
     return render(request, 'website/about.html')
 
-# Contact page view
+
+def thank_you(request):
+    return render(request, 'website/thank_you.html')
+
+
+# -------------------------------
+# Services Page - Load Properties from Excel
+# -------------------------------
+
+from .models import ExcelData
+
+def services(request):
+    try:
+        # Use latest uploaded Excel file
+        latest_excel = ExcelData.objects.last()
+        if latest_excel:
+            df = pd.read_excel(latest_excel.file.path)
+
+            df = df.rename(columns={
+                'Property Name ': 'name',
+                'Location': 'location',
+                'Instagram Reel Link 1': 'reel_url',
+                'Direct Website Link ': 'website_url',
+            })
+
+            df = df[['name', 'location', 'reel_url', 'website_url']].dropna()
+            properties = df.sample(n=min(9, len(df))).to_dict(orient='records')
+        else:
+            print("⚠️ No Excel file uploaded in admin.")
+            properties = []
+
+    except Exception as e:
+        print("❌ Error loading Excel from model:", e)
+        properties = []
+
+    return render(request, 'website/services.html', {
+        'properties': properties
+    })
+
+
+
+# -------------------------------
+# Contact Page - Form Handling
+# -------------------------------
+
 def contact(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -26,25 +85,24 @@ def contact(request):
         message = request.POST.get('message')
 
         # Save to DB
-        ContactSubmission.objects.create(
-            name=name,
-            email=email,
-            message=message
-        )
+        ContactSubmission.objects.create(name=name, email=email, message=message)
 
-        # Email to Admin (you)
+        # Email to Admin
         subject = f"New Contact Form Submission from {name}"
         full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
 
-        send_mail(
-            subject,
-            full_message,
-            email,  # from user's email
-            [os.getenv("EMAIL_HOST_USER")],  # your admin email
-            fail_silently=False,
-        )
-        
-        # Email to User (confirmation)
+        try:
+            send_mail(
+                subject,
+                full_message,
+                email,
+                [os.getenv("EMAIL_HOST_USER")],
+                fail_silently=False,
+            )
+        except Exception as e:
+            print("Error sending admin email:", e)
+
+        # Confirmation email to user
         user_subject = "Thank you for contacting Luxe Stays India!"
         user_message = (
             f"Dear {name},\n\n"
@@ -54,49 +112,35 @@ def contact(request):
             "The Luxe Stays India Team"
         )
 
-        send_mail(
-            user_subject,
-            user_message,
-            os.getenv("EMAIL_HOST_USER"),  # from your admin email
-            [email],  # to the user's email
-            fail_silently=False,
-        )
+        try:
+            send_mail(
+                user_subject,
+                user_message,
+                os.getenv("EMAIL_HOST_USER"),
+                [email],
+                fail_silently=False,
+            )
+        except Exception as e:
+            print("Error sending user confirmation email:", e)
+
         return redirect('thank_you')
 
     return render(request, 'website/contact.html')
 
 
-def thank_you(request):
-    return render(request, 'website/thank_you.html')
-
+# -------------------------------
+# Instagram API Views (via RapidAPI)
+# -------------------------------
 
 def get_instagram_followers(request):
+    cached_followers = cache.get('instagram_followers_count')
+
+    if cached_followers is not None:
+        print("✅ Using cached followers count.")
+        return JsonResponse({"followers": cached_followers})
+
+    print("📡 Fetching fresh followers count from API.")
     url = "https://instagram120.p.rapidapi.com/api/instagram/userInfo"
-
-    payload = { "username": "luxestaysindia" }
-    headers = {
-        "x-rapidapi-key": os.getenv("RAPIDAPI_KEY"),
-        "x-rapidapi-host": os.getenv("RAPIDAPI_HOST"),
-        "Content-Type": "application/json"
-    }
-
-    response = requests.post(url, json=payload, headers=headers)
-    data = response.json()
-    # print("Full API Response:", data)  # for debugging
-
-    try:
-        followers_count = data["result"][0]["user"]["follower_count"]
-    except (KeyError, IndexError, TypeError) as e:
-        print("Error extracting followers count:", e)
-        followers_count = 0
-
-    # print(f"Followers for luxestaysindia: {followers_count}")
-
-    return JsonResponse({"followers": followers_count})
-
-def get_instagram_highlights(request):
-    url = "https://instagram120.p.rapidapi.com/api/instagram/highlights"
-
     payload = {"username": "luxestaysindia"}
     headers = {
         "x-rapidapi-key": os.getenv("RAPIDAPI_KEY"),
@@ -104,26 +148,98 @@ def get_instagram_highlights(request):
         "Content-Type": "application/json"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
-    data = response.json()
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        data = response.json()
+        followers_count = data["result"][0]["user"]["follower_count"]
+
+        cache.set('instagram_followers_count', followers_count, 60 * 60 * 24 * 3)  # Cache for 3 days
+    except Exception as e:
+        print("❌ Error extracting followers count:", e)
+        followers_count = 0
+
+    return JsonResponse({"followers": followers_count})
+
+
+def get_instagram_highlights(request):
+    cached_highlights = cache.get('instagram_highlights')
+
+    if cached_highlights is not None:
+        print("✅ Using cached Instagram highlights.")
+        return JsonResponse({"highlights": cached_highlights})
+
+    print("📡 Fetching fresh highlights from API.")
+    url = "https://instagram120.p.rapidapi.com/api/instagram/highlights"
+    payload = {"username": "luxestaysindia"}
+    headers = {
+        "x-rapidapi-key": os.getenv("RAPIDAPI_KEY"),
+        "x-rapidapi-host": os.getenv("RAPIDAPI_HOST"),
+        "Content-Type": "application/json"
+    }
 
     try:
+        response = requests.post(url, json=payload, headers=headers)
+        data = response.json()
+
         highlights = []
-        for item in data.get("result", []):    # <-- result is a LIST directly
+        for item in data.get("result", []):
             title = item.get("title", "Unnamed Highlight")
-            if title.lower() != "about us":    # skip "About Us" highlight
+            if title.lower() != "about us":
                 highlights.append({
                     "name": title,
                     "image_url": item.get("cover_media", {}).get("cropped_image_version", {}).get("url", "")
                 })
-    except (KeyError, TypeError, IndexError) as e:
+
+        cache.set('instagram_highlights', highlights, 60 * 60 * 24 * 3)  # Cache for 3 days
+    except Exception as e:
+        print("❌ Error fetching highlights:", e)
         highlights = []
 
     return JsonResponse({"highlights": highlights})
 
 
-from django.http import JsonResponse, HttpResponse
-import base64
+def get_instagram_reels(request):
+    cached_videos = cache.get('instagram_reels')
+
+    if cached_videos:
+        print("✅ Using cached Instagram reels.")
+        return JsonResponse({"videos": cached_videos})
+
+    print("📡 Fetching fresh reels from Instagram API.")
+    url = "https://instagram120.p.rapidapi.com/api/instagram/posts"
+    payload = {"username": "luxestaysindia"}
+    headers = {
+        "x-rapidapi-key": os.getenv("RAPIDAPI_KEY"),
+        "x-rapidapi-host": os.getenv("RAPIDAPI_HOST"),
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        data = response.json()
+
+        videos = []
+        for edge in data.get("result", {}).get("edges", []):
+            node = edge.get("node", {})
+            video_versions = node.get("video_versions")
+            if video_versions:
+                video_url = video_versions[0].get("url")
+                if video_url:
+                    videos.append(video_url)
+
+        random.shuffle(videos)
+        cache.set('instagram_reels', videos[:10], 60 * 60 * 24 * 3)  # Cache for 3 days
+        print(f"✅ Cached {len(videos[:10])} new reels for 3 days.")
+        return JsonResponse({"videos": videos[:10]})
+
+    except Exception as e:
+        print("❌ Error parsing reels:", e)
+        return JsonResponse({"videos": []})
+
+
+# -------------------------------
+# Image Proxy - Prevent Hotlink Errors
+# -------------------------------
 
 def proxy_image(request):
     image_url = request.GET.get('url')
@@ -132,12 +248,10 @@ def proxy_image(request):
 
     try:
         resp = requests.get(image_url, stream=True, timeout=5)
-        resp.raise_for_status()  # Properly raise exceptions if failed
+        resp.raise_for_status()
         return HttpResponse(resp.content, content_type=resp.headers.get('Content-Type', 'image/jpeg'))
     except requests.exceptions.RequestException:
-        # Instead of crashing, quietly return a 1x1 transparent GIF
-        pixel_base64 = (
-            'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='  # Transparent pixel
-        )
+        # Return a transparent 1x1 GIF as fallback
+        pixel_base64 = 'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
         pixel = base64.b64decode(pixel_base64)
         return HttpResponse(pixel, content_type='image/gif')
