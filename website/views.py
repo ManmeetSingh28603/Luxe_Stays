@@ -153,7 +153,7 @@ def get_instagram_followers(request):
         data = response.json()
         followers_count = data["result"][0]["user"]["follower_count"]
 
-        cache.set('instagram_followers_count', followers_count, 60 * 60 * 24 * 3)  # Cache for 3 days
+        cache.set('instagram_followers_count', followers_count, 60 * 60 * 24 * 5)  # Cache for 3 days
     except Exception as e:
         print("❌ Error extracting followers count:", e)
         followers_count = 0
@@ -190,7 +190,7 @@ def get_instagram_highlights(request):
                     "image_url": item.get("cover_media", {}).get("cropped_image_version", {}).get("url", "")
                 })
 
-        cache.set('instagram_highlights', highlights, 60 * 60 * 24 * 3)  # Cache for 3 days
+        cache.set('instagram_highlights', highlights, 60 * 60 * 24 * 5)  # Cache for 3 days
     except Exception as e:
         print("❌ Error fetching highlights:", e)
         highlights = []
@@ -228,7 +228,7 @@ def get_instagram_reels(request):
                     videos.append(video_url)
 
         random.shuffle(videos)
-        cache.set('instagram_reels', videos[:10], 60 * 60 * 24 * 3)  # Cache for 3 days
+        cache.set('instagram_reels', videos[:10], 60 * 60 * 24 * 5)  # Cache for 3 days
         print(f"✅ Cached {len(videos[:10])} new reels for 3 days.")
         return JsonResponse({"videos": videos[:10]})
 
