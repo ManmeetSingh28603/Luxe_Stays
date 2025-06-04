@@ -199,13 +199,6 @@ def get_instagram_highlights(request):
 
 
 def get_instagram_reels(request):
-    cached_videos = cache.get('instagram_reels')
-
-    if cached_videos:
-        print("✅ Using cached Instagram reels.")
-        return JsonResponse({"videos": cached_videos})
-
-    print("📡 Fetching fresh reels from Instagram API.")
     url = "https://instagram120.p.rapidapi.com/api/instagram/posts"
     payload = {"username": "luxestaysindia"}
     headers = {
@@ -228,13 +221,12 @@ def get_instagram_reels(request):
                     videos.append(video_url)
 
         random.shuffle(videos)
-        cache.set('instagram_reels', videos[:10], 60 * 60 * 24 * 5)  # Cache for 3 days
-        print(f"✅ Cached {len(videos[:10])} new reels for 3 days.")
         return JsonResponse({"videos": videos[:10]})
 
     except Exception as e:
         print("❌ Error parsing reels:", e)
         return JsonResponse({"videos": []})
+
 
 
 # -------------------------------

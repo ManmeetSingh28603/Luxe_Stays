@@ -208,9 +208,13 @@
                     video.controls = false;
                     video.preload = "metadata";
 
-                    video.addEventListener("mouseenter", () => {
+                    video.addEventListener("mouseenter", async () => {
                         video.currentTime = 0;
-                        video.play();
+                        try {
+                            await video.play();
+                        } catch (err) {
+                            console.warn("Video play was interrupted:", err.message);
+                        }
                     });
 
                     video.addEventListener("mouseleave", () => {
