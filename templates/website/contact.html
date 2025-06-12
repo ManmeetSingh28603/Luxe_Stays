@@ -5,7 +5,7 @@
 
 {% block content %}
 <section class="py-20 bg-[#C17C5E] text-[#F5EFE6]">
-    <div class="container mx-auto text-center px-4">
+    <div class="container mx-auto text-center px-4" data-aos="fade-down">
         <h2 class="text-5xl font-bold mb-6">Contact Luxe Stays India</h2>
         <p class="text-xl mb-12 max-w-2xl mx-auto">We'd love to hear from you. Whether you're looking for a dream
             vacation, partnership, or have questions, we're here for you.</p>
@@ -16,7 +16,7 @@
     <div class="container mx-auto px-4 md:px-12 flex flex-col lg:flex-row gap-12 items-center justify-center">
 
         <!-- Contact Info -->
-        <div class="w-full lg:w-1/2 space-y-8 text-center lg:text-left">
+        <div class="w-full lg:w-1/2 space-y-8 text-center lg:text-left" data-aos="fade-right">
             <h3 class="text-3xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
             <p class="text-lg text-gray-600 max-w-md mx-auto lg:mx-0">You can reach us via phone, email, or by filling
                 out the form. We'll get back to you as soon as possible.</p>
@@ -36,7 +36,7 @@
         </div>
 
         <!-- Contact Form -->
-        <div class="w-full lg:w-1/2 flex justify-center">
+        <div class="w-full lg:w-1/2 flex justify-center" data-aos="fade-left">
             <div class="w-full max-w-lg bg-[#fff9f5] p-8 rounded-2xl shadow-xl">
                 <form action="{% url 'contact' %}" method="POST" class="space-y-6">
                     {% csrf_token %}
@@ -76,7 +76,7 @@
 </section>
 
 <section class="py-16 bg-[#F5EFE6]">
-    <div class="container mx-auto text-center px-4 text-[#C17C5E]">
+    <div class="container mx-auto text-center px-4 text-[#C17C5E]" data-aos="zoom-in-up">
         <h3 class="text-3xl font-semibold mb-6">Visit Us</h3>
         <p class="text-lg mb-4">Want to meet in person? Let’s arrange a coffee meeting and plan your next
             dream stay.</p>

@@ -1,4 +1,3 @@
-<!-- templates/website/base.html -->
 {% load static %}
 {% load tailwind_tags %}
 <!DOCTYPE html>
@@ -11,12 +10,21 @@
         content="Luxe Stays India - Luxury Content Creation & Social Media Marketing for Hospitality">
     <title>{% block title %}Luxe Stays India{% endblock %}</title>
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    {% tailwind_css %}
+
     <style>
         html {
             scroll-behavior: smooth;
         }
     </style>
-    {% tailwind_css %}
 </head>
 
 <body class="bg-[#F5EFE6] font-sans overflow-x-hidden">
@@ -100,8 +108,8 @@
                 </a>
             </div>
         </div>
-
     </header>
+
     <!-- Main Content Area -->
     <main class="pt-5">
         {% block content %}{% endblock %}
@@ -114,33 +122,57 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu Script -->
-
+    <!-- Scripts -->
     <script>
         const toggleBtn = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const bars = document.querySelectorAll('.hamburger-bar');
         let menuOpen = false;
 
+        function openMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            bars[0].classList.add('rotate-45', 'translate-y-2');
+            bars[1].classList.add('opacity-0');
+            bars[2].classList.add('-rotate-45', '-translate-y-2');
+            menuOpen = true;
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
+            bars[0].classList.remove('rotate-45', 'translate-y-2');
+            bars[1].classList.remove('opacity-0');
+            bars[2].classList.remove('-rotate-45', '-translate-y-2');
+            menuOpen = false;
+        }
+
         toggleBtn.addEventListener('click', () => {
-            menuOpen = !menuOpen;
             if (menuOpen) {
-                mobileMenu.classList.remove('translate-x-full');
-                mobileMenu.classList.add('translate-x-0');
-
-                // Animate hamburger to X
-                bars[0].classList.add('rotate-45', 'translate-y-2');
-                bars[1].classList.add('opacity-0');
-                bars[2].classList.add('-rotate-45', '-translate-y-2');
+                closeMenu();
             } else {
-                mobileMenu.classList.remove('translate-x-0');
-                mobileMenu.classList.add('translate-x-full');
-
-                // Animate X back to hamburger
-                bars[0].classList.remove('rotate-45', 'translate-y-2');
-                bars[1].classList.remove('opacity-0');
-                bars[2].classList.remove('-rotate-45', '-translate-y-2');
+                openMenu();
             }
+        });
+
+        // Fix: Automatically close the menu when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768 && menuOpen) {
+                closeMenu();
+            }
+        });
+    </script>
+
+
+    <!-- AOS JS Initialization AFTER content -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                once: true,
+                duration: 800,
+                offset: 100,
+            });
         });
     </script>
 </body>

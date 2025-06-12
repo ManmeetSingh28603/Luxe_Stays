@@ -4,9 +4,10 @@
 {% block title %}About Us - Luxe Stays India{% endblock %}
 
 {% block content %}
+
 <!-- About Luxe Stays India Section -->
-<section class="bg-[#C17C5E] text-[#F5EFE6] py-20 px-6 text-center">
-    <div class="max-w-4xl mx-auto animate__animated animate__fadeInDown">
+<section class="bg-[#C17C5E] text-[#F5EFE6] py-20 px-6 text-center" data-aos="fade-down">
+    <div class="max-w-4xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Who We Are</h2>
         <p class="text-xl md:text-2xl leading-relaxed">
             Luxe Stays India is a luxury-focused content creation and marketing agency that helps hospitality brands
@@ -17,8 +18,8 @@
 </section>
 
 <!-- Mission Section -->
-<section class="bg-[#F5EFE6] text-[#C17C5E] py-20 px-6 text-center">
-    <div class="max-w-4xl mx-auto animate__animated animate__fadeInUp">
+<section class="bg-[#F5EFE6] text-[#C17C5E] py-20 px-6 text-center" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto">
         <h3 class="text-3xl md:text-4xl font-semibold mb-6">Our Mission</h3>
         <p class="text-lg md:text-xl leading-relaxed">
             To empower boutique hotels, resorts, and hospitality brands with stunning visuals, strategic content, and
@@ -30,11 +31,11 @@
 <!-- Founders Section -->
 <section class="bg-[#C17C5E] text-[#F5EFE6] py-20 px-6 text-center">
     <div class="max-w-6xl mx-auto">
-        <h3 class="text-3xl md:text-4xl font-semibold mb-12 animate__animated animate__fadeInDown">Meet the Founders
-        </h3>
+        <h3 class="text-3xl md:text-4xl font-semibold mb-12" data-aos="fade-down">Meet the Founders</h3>
         <div class="flex flex-wrap justify-center items-center gap-12">
             <!-- Founder 1 -->
-            <div class="flex flex-col items-center transform transition-transform duration-500 hover:scale-105">
+            <div class="flex flex-col items-center transform transition-transform duration-500 hover:scale-105"
+                data-aos="zoom-in">
                 <div class="w-40 h-40 rounded-full overflow-hidden mb-4 shadow-lg">
                     <img src="{% static 'images/purvi.jpg' %}" alt="Purvi Bhushan" class="w-full h-full object-cover">
                 </div>
@@ -43,7 +44,8 @@
             </div>
 
             <!-- Founder 2 -->
-            <div class="flex flex-col items-center transform transition-transform duration-500 hover:scale-105">
+            <div class="flex flex-col items-center transform transition-transform duration-500 hover:scale-105"
+                data-aos="zoom-in">
                 <div class="w-40 h-40 rounded-full overflow-hidden mb-4 shadow-lg">
                     <img src="{% static 'images/rushmi.jpg' %}" alt="Rushmi Behrani" class="w-full h-full object-cover">
                 </div>
@@ -51,7 +53,7 @@
                 <p class="text-sm text-gray-200 mt-2">Marketing Strategist</p>
             </div>
         </div>
-        <p class="text-xl mt-8 max-w-3xl mx-auto animate__animated animate__fadeInUp">
+        <p class="text-xl mt-8 max-w-3xl mx-auto" data-aos="fade-up">
             Purvi and Rushmi bring together a wealth of experience in luxury hospitality, photography, and social media
             strategy to craft standout branding experiences for clients across India.
         </p>
@@ -59,7 +61,7 @@
 </section>
 
 <!-- Clients Section -->
-<section class="bg-[#F5EFE6] text-center py-20 px-6">
+<section class="bg-[#F5EFE6] text-center py-20 px-6" data-aos="fade-up">
     <div class="max-w-6xl mx-auto">
         <h3 class="text-4xl md:text-5xl font-bold text-[#C17C5E] mb-12">Our Clients</h3>
         <div id="highlights-container" class="flex flex-wrap justify-center gap-10">
@@ -77,6 +79,7 @@
                 data.highlights.forEach(item => {
                     const clientDiv = document.createElement('div');
                     clientDiv.className = "flex flex-col items-center space-y-2";
+                    clientDiv.setAttribute('data-aos', 'zoom-in');
 
                     clientDiv.innerHTML = `
                         <div class="w-28 h-28 rounded-full bg-white shadow-md overflow-hidden flex items-center justify-center">
@@ -87,6 +90,7 @@
 
                     container.appendChild(clientDiv);
                 });
+                AOS.refresh(); // Refresh animations for newly added elements
             })
             .catch(error => console.error('Error fetching highlights:', error));
     });

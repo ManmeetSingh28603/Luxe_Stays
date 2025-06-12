@@ -6,8 +6,8 @@
 {% block content %}
 
 <!-- Hero Section -->
-<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] text-center">
-    <div class="container mx-auto px-4 animate__animated animate__fadeInDown">
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] text-center animate-on-scroll">
+    <div class="container mx-auto px-4">
         <h1 class="text-5xl font-bold mb-6">Our Services</h1>
         <p class="text-xl max-w-2xl mx-auto">
             At Luxe Stays India, we empower luxury hospitality brands with compelling visuals and strategic digital
@@ -17,53 +17,32 @@
 </section>
 
 <!-- What We Offer Section -->
-<section class="py-20 bg-[#F5EFE6]" id="what-we-offer">
+<section class="py-20 bg-[#F5EFE6] animate-on-scroll" id="what-we-offer">
     <div class="container mx-auto text-center px-6">
         <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12">What We Offer</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <!-- Item 1 -->
+            {% for item in "123456789" %}
             <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Property Tours</h3>
+                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">
+                    {% if forloop.counter == 1 %}Property Tours{% endif %}
+                    {% if forloop.counter == 2 %}Event Coverage{% endif %}
+                    {% if forloop.counter == 3 %}Food & Dining Shoots{% endif %}
+                    {% if forloop.counter == 4 %}Staff Introductions{% endif %}
+                    {% if forloop.counter == 5 %}Social Media Clips{% endif %}
+                    {% if forloop.counter == 6 %}Audience Engagement{% endif %}
+                    {% if forloop.counter == 7 %}Strategy Development{% endif %}
+                    {% if forloop.counter == 8 %}Social Media Advertising{% endif %}
+                    {% if forloop.counter == 9 %}Performance Analytics{% endif %}
+                </h3>
             </div>
-            <!-- Item 2 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Event Coverage</h3>
-            </div>
-            <!-- Item 3 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Food & Dining Shoots</h3>
-            </div>
-            <!-- Item 4 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Staff Introductions</h3>
-            </div>
-            <!-- Item 5 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Social Media Clips</h3>
-            </div>
-            <!-- Item 6 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Audience Engagement</h3>
-            </div>
-            <!-- Item 7 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Strategy Development</h3>
-            </div>
-            <!-- Item 8 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Social Media Advertising</h3>
-            </div>
-            <!-- Item 9 -->
-            <div class="bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl font-bold text-[#C17C5E] mb-2">Performance Analytics</h3>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
 <!-- Featured Destinations Section -->
-<section class="py-20 bg-[#C17C5E] text-[#F5EFE6]">
-    <div class="container mx-auto px-6 text-center animate__animated animate__fadeInUp">
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] animate-on-scroll">
+    <div class="container mx-auto px-6 text-center">
         <h2 class="text-4xl font-semibold mb-12">Where We've Worked</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {% for property in properties %}
@@ -72,8 +51,6 @@
                 <h3 class="text-xl font-bold mb-3">
                     {{ property.name }} - {{ property.location }}
                 </h3>
-
-                <!-- Buttons: View Reel & Visit Website -->
                 <div class="mt-4 flex gap-3 items-center flex-wrap">
                     <a href="{{ property.reel_url }}" target="_blank"
                         class="px-5 py-2 bg-[#C17C5E] text-[#F5EFE6] rounded-full text-sm font-semibold shadow hover:bg-[#a35d45] transition duration-300">
@@ -97,47 +74,55 @@
     </div>
 </section>
 
-
-
-<br>
-<br>
-<br>
+<br><br><br>
 
 <!-- Reels Gallery -->
-<section class="bg-[#F5EFE6] py-5 px-6 text-center">
+<section class="bg-[#F5EFE6] py-5 px-6 text-center animate-on-scroll">
     <div class="max-w-7xl mx-auto">
         <h3 class="text-4xl md:text-5xl font-bold text-[#C17C5E] mb-12">Our Instagram Reels</h3>
 
         <div class="relative">
-            <!-- Scrollable container -->
-            <div id="reelsContainer" class="flex overflow-x-auto gap-6 scroll-smooth pb-4 no-scrollbar">
-                <!-- Videos will be inserted here by JS -->
-            </div>
+            <div id="reelsContainer" class="flex overflow-x-auto gap-6 scroll-smooth pb-4 no-scrollbar"></div>
 
-            <!-- Prev / Next buttons -->
             <div class="reel-mask-left"></div>
             <button id="prevReel"
-                class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#C17C5E] hover:bg-[#C17C5E] hover:text-white border border-[#C17C5E] transition-all duration-300 p-3 rounded-full shadow-lg backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-[#C17C5E]">
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#C17C5E] hover:bg-[#C17C5E] hover:text-white border border-[#C17C5E] transition-all duration-300 p-3 rounded-full shadow-lg backdrop-blur-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
             <div class="reel-mask-right"></div>
             <button id="nextReel"
-                class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#C17C5E] hover:bg-[#C17C5E] hover:text-white border border-[#C17C5E] transition-all duration-300 p-3 rounded-full shadow-lg backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-[#C17C5E]">
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#C17C5E] hover:bg-[#C17C5E] hover:text-white border border-[#C17C5E] transition-all duration-300 p-3 rounded-full shadow-lg backdrop-blur-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
             </button>
-
         </div>
     </div>
 </section>
 
+<!-- Collaboration Pitch -->
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] text-center animate-on-scroll">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-semibold mb-12">Why Collaborate With Us?</h2>
+        <p class="text-xl max-w-2xl mx-auto">
+            We've built a dedicated audience of over 55,000 luxury travelers on Instagram in just 60 days — and we're
+            just getting started. Partnering with us gives your brand exposure across an engaged audience that trusts
+            our curation.
+        </p>
+        <br><br>
+        <a href="https://www.instagram.com/luxestaysindia/" target="_blank"
+            class="px-8 py-3 bg-[#F5EFE6] text-[#C17C5E] font-semibold text-lg rounded-full shadow-lg hover:bg-white transform hover:scale-105 transition-all duration-300">
+            View Our Instagram
+        </a>
+    </div>
+</section>
+
+<!-- Custom CSS -->
 <style>
-    /* styles.css */
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }
@@ -166,32 +151,9 @@
         right: 0;
         background: linear-gradient(to left, #F5EFE6, transparent);
     }
-
-    /* .aspect-w-9 {
-        aspect-ratio: 9 / 16;
-    } */
 </style>
 
-
-
-<!-- Collaboration Pitch -->
-<section class="py-20 bg-[#C17C5E] text-[#F5EFE6]">
-    <div class="container mx-auto px-6 text-center animate__animated animate__fadeInUp">
-        <h2 class="text-4xl font-semibold mb-12">Why Collaborate With Us?</h2>
-        <p class="text-xl max-w-2xl mx-auto">
-            We've built a dedicated audience of over 55,000 luxury travelers on Instagram in just 60 days —
-            and we're just getting started. Partnering with us gives your brand exposure across an engaged
-            audience that trusts our curation.
-        </p>
-        <br>
-        <br>
-        <a href="https://www.instagram.com/luxestaysindia/" target="_blank"
-            class="px-8 py-3 bg-[#F5EFE6] text-[#C17C5E] font-semibold text-lg rounded-full shadow-lg hover:bg-white transform hover:scale-105 transition-all duration-300">
-            View Our Instagram
-        </a>
-    </div>
-</section>
-
+<!-- Scripts -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const container = document.getElementById("reelsContainer");
@@ -227,16 +189,29 @@
             })
             .catch(err => console.error("Error loading reels", err));
 
-        // Scroll buttons
         document.getElementById("prevReel").addEventListener("click", () => {
             container.scrollBy({ left: -300, behavior: "smooth" });
         });
         document.getElementById("nextReel").addEventListener("click", () => {
             container.scrollBy({ left: 300, behavior: "smooth" });
         });
+
+        // Scroll-triggered animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate__animated", "animate__fadeInUp");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll(".animate-on-scroll").forEach(el => {
+            observer.observe(el);
+        });
     });
 </script>
-
-
 
 {% endblock %}

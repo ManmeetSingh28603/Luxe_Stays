@@ -1,4 +1,3 @@
-<!-- templates/website/home.html -->
 {% extends 'website/base.html' %}
 
 {% block title %}Luxe Stays India{% endblock %}
@@ -9,27 +8,30 @@
 <!-- Hero Section -->
 <section class="bg-[#C17C5E] text-[#F5EFE6] min-h-screen flex flex-col justify-center items-center text-center px-4">
     <h1 id="animatedHeading" class="text-5xl md:text-6xl font-extrabold mb-6 flex flex-wrap justify-center"></h1>
-    <p id="animatedSubheading" class="text-2xl md:text-3xl mb-8 flex flex-wrap justify-center"></p> <a href="#services"
+    <p id="animatedSubheading" class="text-2xl md:text-3xl mb-8 flex flex-wrap justify-center"></p>
+    <a href="#services"
         class="px-8 py-3 bg-[#F5EFE6] text-[#C17C5E] font-semibold text-lg rounded-full shadow-lg hover:bg-white transform hover:scale-105 transition-all duration-300">
-        Discover Our Services </a>
+        Discover Our Services
+    </a>
 </section>
 
 <!-- About Us Section -->
-<section class="py-10 bg-[#F5EFE6]" id="about">
+<section class="py-10 bg-[#F5EFE6] opacity-0 translate-y-10 transition-all duration-1000 ease-out" id="about"
+    data-animate>
     <div class="container mx-auto px-6">
         <div class="bg-white rounded-2xl shadow-xl p-10 max-w-5xl mx-auto text-center">
             <h2 class="text-4xl font-semibold text-[#C17C5E] mb-6">About Us</h2>
             <p class="text-xl text-gray-700 mb-6">At Luxe Stays India, we specialize in creating captivating content for
-                luxury hospitality brands. Our goal is to emotionally connect audiences with your property, encouraging
-                bookings and loyalty.</p>
+                luxury hospitality brands...</p>
             <p class="text-xl text-gray-700">With a team skilled in photography, videography, social media marketing,
-                and strategy development, we ensure your brand shines across all digital platforms.</p>
+                and strategy development...</p>
         </div>
     </div>
 </section>
 
 <!-- Instagram Followers Section -->
-<section class="py-10 bg-[#F5EFE6]" id="instagram-followers">
+<section class="py-10 bg-[#F5EFE6] opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+    id="instagram-followers" data-animate>
     <div class="container mx-auto px-6">
         <div class="bg-white rounded-2xl shadow-xl p-10 max-w-md mx-auto text-center">
             <h2 class="text-4xl font-semibold text-[#C17C5E] mb-8">Instagram Followers</h2>
@@ -39,6 +41,88 @@
     </div>
 </section>
 
+<!-- Services Section -->
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+    id="services" data-animate>
+    <div class="container mx-auto text-center px-6">
+        <h2 class="text-4xl font-semibold mb-12">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300 opacity-0 translate-y-10"
+                data-animate>
+                <h3 class="text-2xl font-bold mb-4">Shoots & Marketing</h3>
+                <p class="text-lg">Stunning photography, cinematic reels, and strategic social media campaigns...</p>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300 opacity-0 translate-y-10"
+                data-animate>
+                <h3 class="text-2xl font-bold mb-4">Profile Optimization</h3>
+                <p class="text-lg">Audit and optimize your brand's online profiles to maximize engagement...</p>
+            </div>
+            <div class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300 opacity-0 translate-y-10"
+                data-animate>
+                <h3 class="text-2xl font-bold mb-4">Custom Strategy</h3>
+                <p class="text-lg">Tailored digital marketing and content strategies that align perfectly...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Founders Section -->
+<section class="py-10 bg-[#F5EFE6] opacity-0 translate-y-10 transition-all duration-1000 ease-out" id="founders"
+    data-animate>
+    <div class="container mx-auto text-center px-6">
+        <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12">Meet the Founders</h2>
+        <div class="flex flex-wrap justify-center items-center gap-12">
+            <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-110 hover:shadow-2xl opacity-0 translate-y-10"
+                data-animate>
+                <img src="{% static 'images/purvi.jpg' %}" alt="Purvi Bhushan" class="w-full h-full object-cover">
+            </div>
+            <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-110 hover:shadow-2xl opacity-0 translate-y-10"
+                data-animate>
+                <img src="{% static 'images/rushmi.jpg' %}" alt="Rushmi Behrani" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <p class="text-xl text-gray-700 mt-8">Purvi and Rushmi are the creative minds behind Luxe Stays India...</p>
+    </div>
+</section>
+
+<!-- Platform Highlights Section -->
+<section class="py-10 bg-[#F5EFE6] opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+    id="platform-highlights" data-animate>
+    <div class="container mx-auto px-6">
+        <div class="bg-white rounded-2xl shadow-xl p-10">
+            <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12 text-center">Our Impact</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start text-center">
+                <div class="lg:text-left">
+                    <p class="font-extrabold text-gray-800 text-5xl lg:text-6xl text-center" id="accountsEngaged">0</p>
+                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold text-center">Accounts Engaged</p>
+                </div>
+                <div class="lg:text-center">
+                    <p class="font-extrabold text-gray-800 text-5xl lg:text-6xl text-center" id="reach">0</p>
+                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold text-center">Reach</p>
+                </div>
+                <div class="lg:text-right">
+                    <p class="font-extrabold text-gray-800 text-5xl lg:text-7xl text-center" id="followersGained">0</p>
+                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold text-center">Followers Gained</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-20 bg-[#C17C5E] text-[#F5EFE6] opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+    id="contact" data-animate>
+    <div class="container mx-auto text-center px-6">
+        <h2 class="text-4xl font-semibold mb-8">Contact Us</h2>
+        <p class="text-lg mb-6">Let's collaborate and create something extraordinary together!</p>
+        <a href="{% url 'contact' %}"
+            class="inline-block px-8 py-3 bg-[#F5EFE6] text-[#C17C5E] font-semibold text-lg rounded-full shadow-lg hover:bg-white hover:scale-105 transform transition-all duration-300">
+            Go to Contact Page
+        </a>
+    </div>
+</section>
+
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.umd.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -51,166 +135,56 @@
                     separator: ',',
                     useEasing: true,
                 });
-                if (!count.error) {
-                    count.start();
-                } else {
-                    console.error(count.error);
-                }
+                if (!count.error) count.start();
             });
 
-        // Platform Highlights Counters
-        const accountsEngaged = new countUp.CountUp('accountsEngaged', 2300000, {
-            duration: 4,
-            separator: ',',
-            useEasing: true,
-        });
-        const reach = new countUp.CountUp('reach', 250000, {
-            duration: 4,
-            separator: ',',
-            useEasing: true,
-        });
-        const followersGained = new countUp.CountUp('followersGained', 55200, {
-            duration: 4,
-            separator: ',',
-            useEasing: true,
-        });
+        const accountsEngaged = new countUp.CountUp('accountsEngaged', 2300000, { duration: 4, separator: ',', useEasing: true });
+        const reach = new countUp.CountUp('reach', 250000, { duration: 4, separator: ',', useEasing: true });
+        const followersGained = new countUp.CountUp('followersGained', 55200, { duration: 4, separator: ',', useEasing: true });
 
         if (!accountsEngaged.error) accountsEngaged.start();
         if (!reach.error) reach.start();
         if (!followersGained.error) followersGained.start();
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-animate]').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate Heading and Subheading
+        animateLetters("Welcome to Luxe Stays India", "animatedHeading", 60);
+        setTimeout(() => {
+            animateLetters("Luxury Content Creation & Social Media Marketing", "animatedSubheading", 40);
+        }, 2000);
     });
 
     function animateLetters(text, targetId, delay = 50) {
         const container = document.getElementById(targetId);
-        container.innerHTML = ''; // Clear previous content
-
+        container.innerHTML = '';
         text.split('').forEach((char, index) => {
             const span = document.createElement('span');
-
-            // Handle space characters
-            if (char === ' ') {
-                span.innerHTML = '&nbsp;';
-            } else {
-                span.textContent = char;
-            }
-
+            span.innerHTML = char === ' ' ? '&nbsp;' : char;
             span.style.opacity = 0;
             span.style.display = 'inline-block';
             span.style.transform = 'translateY(10px)';
             span.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
             span.style.transitionDelay = `${index * delay}ms`;
-
             container.appendChild(span);
-
-            // Trigger animation
             setTimeout(() => {
                 span.style.opacity = 1;
                 span.style.transform = 'translateY(0)';
             }, 50);
         });
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        animateLetters("Welcome to Luxe Stays India", "animatedHeading", 50);
-        animateLetters("Luxury Content Creation & Social Media Marketing", "animatedSubheading", 30);
-    });
-
 </script>
-
-
-<!-- Services Section -->
-<section class="py-20 bg-[#C17C5E] text-[#F5EFE6]" id="services">
-    <div class="container mx-auto text-center px-6">
-        <h2 class="text-4xl font-semibold mb-12">Our Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div
-                class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300">
-                <h3 class="text-2xl font-bold mb-4">Shoots & Marketing</h3>
-                <p class="text-lg">Stunning photography, cinematic reels, and strategic social media campaigns to
-                    elevate your property's presence.</p>
-            </div>
-            <div
-                class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300">
-                <h3 class="text-2xl font-bold mb-4">Profile Optimization</h3>
-                <p class="text-lg">Audit and optimize your brand's online profiles to maximize engagement,
-                    conversions,
-                    and brand trust.</p>
-            </div>
-            <div
-                class="bg-[#F5EFE6] text-[#C17C5E] rounded-lg shadow-lg p-6 hover:scale-105 transition-all duration-300">
-                <h3 class="text-2xl font-bold mb-4">Custom Strategy</h3>
-                <p class="text-lg">Tailored digital marketing and content strategies that align perfectly with your
-                    luxury hospitality goals.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Founders Section -->
-<section class="py-10 bg-[#F5EFE6]" id="founders" data-aos="fade-up">
-    <div class="container mx-auto text-center px-6">
-        <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12">Meet the Founders</h2>
-        <div class="flex flex-wrap justify-center items-center gap-12">
-            <div
-                class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-110 hover:shadow-2xl">
-                <img src="{% static 'images/purvi.jpg' %}" alt="Purvi Bhushan" class="w-full h-full object-cover">
-            </div>
-            <div
-                class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-110 hover:shadow-2xl">
-                <img src="{% static 'images/rushmi.jpg' %}" alt="Rushmi Behrani" class="w-full h-full object-cover">
-            </div>
-        </div>
-        <p class="text-xl text-gray-700 mt-8">
-            Purvi and Rushmi are the creative minds behind Luxe Stays India. Together, they bring a perfect blend of
-            strategic marketing expertise and visual storytelling. With a strong background in luxury travel, digital
-            branding, and hospitality marketing, they specialize in crafting premium content that drives engagement,
-            builds emotional connections, and elevates hotel and Airbnb brands across India.
-        </p>
-    </div>
-</section>
-
-<!-- Platform Highlights Section -->
-<section class="py-10 bg-[#F5EFE6]" id="platform-highlights">
-    <div class="container mx-auto px-6">
-        <div class="bg-white rounded-2xl shadow-xl p-10">
-            <h2 class="text-4xl font-semibold text-[#C17C5E] mb-12 text-center">Our Impact</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start text-center">
-
-                <!-- Accounts Engaged -->
-                <div class="lg:text-left">
-                    <p class="font-extrabold text-gray-800 text-5xl lg:text-6xl text-center" id="accountsEngaged">0</p>
-                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold text-center">Accounts Engaged</p>
-                </div>
-
-                <!-- Reach (centered and flexible placement) -->
-                <div class="lg:text-center">
-                    <p class="font-extrabold text-gray-800 text-5xl lg:text-6xl text-center" id="reach">0</p>
-                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold text-center">Reach</p>
-                </div>
-
-                <!-- Followers Gained (right aligned and bold) -->
-                <div class="lg:text-right">
-                    <p class="font-extrabold text-gray-800 text-5xl lg:text-7xl text-center" id="followersGained">0</p>
-                    <p class="text-lg text-[#C17C5E] mt-4 font-semibold text-center">Followers Gained</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Contact Section -->
-<section class="py-20 bg-[#C17C5E] text-[#F5EFE6]" id="contact">
-    <div class="container mx-auto text-center px-6">
-        <h2 class="text-4xl font-semibold mb-8">Contact Us</h2>
-        <p class="text-lg mb-6">Let's collaborate and create something extraordinary together!</p>
-        <a href="{% url 'contact' %}"
-            class="inline-block px-8 py-3 bg-[#F5EFE6] text-[#C17C5E] font-semibold text-lg rounded-full shadow-lg hover:bg-white hover:scale-105 transform transition-all duration-300">
-            Go to Contact Page
-        </a>
-    </div>
-</section>
-
 
 {% endblock %}
