@@ -13,6 +13,11 @@
   ],
   "env": {
     "PYTHONPATH": ".",
-    "DJANGO_SETTINGS_MODULE": "luxestays_project.settings_vercel"
+    "DJANGO_SETTINGS_MODULE": "luxestays_project.settings_vercel_optimized"
+  },
+  "functions": {
+    "luxestays_project/wsgi_vercel.py": {
+      "maxDuration": 30
+    }
   }
 } 
