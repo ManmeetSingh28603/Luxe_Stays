@@ -83,8 +83,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # Custom middleware for analytics (simplified for Vercel)
-    'website.middleware.AnalyticsMiddleware',
 ]
 
 # Vercel-optimized static files configuration
@@ -110,9 +108,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Custom context processors
-                'website.context_processors.site_settings',
-                'website.context_processors.analytics',
             ],
         },
     },
@@ -258,9 +253,8 @@ CACHE_TIMEOUTS = {
     'page_cache': 60 * 10,  # 10 minutes
 }
 
-# Rate limiting (enabled for Vercel)
-RATELIMIT_ENABLE = config('RATELIMIT_ENABLE', default=True, cast=bool)
-RATELIMIT_USE_CACHE = 'default'
+# Rate limiting disabled for Vercel (using simpler approach)
+RATELIMIT_ENABLE = False
 
 # Error reporting
 ADMINS = [

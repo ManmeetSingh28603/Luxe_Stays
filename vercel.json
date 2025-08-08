@@ -2,7 +2,10 @@
   "builds": [
     {
       "src": "luxestays_project/wsgi_vercel.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "requirements": "requirements-vercel-optimized.txt"
+      }
     }
   ],
   "routes": [
