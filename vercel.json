@@ -1,21 +1,21 @@
 {
   "builds": [
     {
-      "src": "luxestays_project/wsgi_vercel.py",
+      "src": "luxestays_project/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "requirements": "requirements-vercel-optimized.txt"
+        "requirements": "requirements-vercel.txt"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "luxestays_project/wsgi_vercel.py"
+      "dest": "luxestays_project/wsgi.py"
     }
   ],
   "env": {
     "PYTHONPATH": ".",
-    "DJANGO_SETTINGS_MODULE": "luxestays_project.settings_vercel_optimized"
+    "DJANGO_SETTINGS_MODULE": "luxestays_project.settings"
   }
 } 

@@ -31,22 +31,29 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'luxestaysindia.com',
     'www.luxestaysindia.com',
-    'luxestays-production.up.railway.app',  # (or whatever your Railway subdomain is right now)
+    'luxestays-production.up.railway.app',  # Railway
+    'luxestaysindia.vercel.app',  # Vercel
+    'luxestaysindia-git-vercel.vercel.app',  # Vercel
+    'luxestaysindia-git-main.vercel.app',  # Vercel
     '127.0.0.1',
-    'localhost'
+    'localhost',
+    '.vercel.app',  # Allow all Vercel subdomains
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://luxestaysindia.com',
     'https://www.luxestaysindia.com',
-    'https://luxestaysindia-production.up.railway.app',  # must have https://
-    'https://luxestays-production.up.railway.app',
+    'https://luxestaysindia-production.up.railway.app',  # Railway
+    'https://luxestays-production.up.railway.app',  # Railway
+    'https://luxestaysindia.vercel.app',  # Vercel
+    'https://luxestaysindia-git-vercel.vercel.app',  # Vercel
+    'https://luxestaysindia-git-main.vercel.app',  # Vercel
 ]
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.join(BASE_DIR, 'cache'),
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
     }
 }
 
