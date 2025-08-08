@@ -8,14 +8,15 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.core.mail import send_mail
-from .models import ContactSubmission
+from .models import ContactSubmission, ExcelData
 from django.core.cache import cache
+from typing import TYPE_CHECKING
 
-# Fetch Excel Data
-from .models import ExcelData
+if TYPE_CHECKING:
+    from django.db.models.manager import Manager
 
 def read_excel_data():
-    latest_excel = ExcelData.objects.last()
+    latest_excel = ExcelData.objects.last()  # type: ignore
     if latest_excel:
         df = pd.read_excel(latest_excel.file.path)
         return df.to_dict(orient='records')
@@ -47,7 +48,7 @@ from .models import ExcelData
 def services(request):
     try:
         # Use latest uploaded Excel file
-        latest_excel = ExcelData.objects.last()
+        latest_excel = ExcelData.objects.last()  # type: ignore
         if latest_excel:
             df = pd.read_excel(latest_excel.file.path)
 
@@ -59,7 +60,8 @@ def services(request):
             })
 
             df = df[['name', 'location', 'reel_url', 'website_url']].dropna()
-            properties = df.sample(n=min(9, len(df))).to_dict(orient='records')
+            sample_df = df.sample(n=min(9, len(df)))
+            properties = [row.to_dict() for _, row in sample_df.iterrows()]
         else:
             print("⚠️ No Excel file uploaded in admin.")
             properties = []
@@ -85,7 +87,7 @@ def contact(request):
         message = request.POST.get('message')
 
         # Save to DB
-        ContactSubmission.objects.create(name=name, email=email, message=message)
+        ContactSubmission.objects.create(name=name, email=email, message=message)  # type: ignore
 
         # Email to Admin
         subject = f"New Contact Form Submission from {name}"
