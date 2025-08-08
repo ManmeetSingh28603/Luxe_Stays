@@ -3,6 +3,7 @@
 ## 📋 Current Setup
 
 ✅ **Successfully created 3 branches:**
+
 - `master` - Railway deployment (paid service)
 - `vercel` - Vercel deployment (free tier)
 - `develop` - Development branch
@@ -10,6 +11,7 @@
 ## 🔄 How to Switch Between Deployments
 
 ### When Railway Subscription is ACTIVE (Use `master` branch)
+
 ```bash
 # 1. Switch to master branch
 git checkout master
@@ -21,6 +23,7 @@ git push origin master
 ```
 
 ### When Railway Subscription EXPIRES (Use `vercel` branch)
+
 ```bash
 # 1. Switch to vercel branch
 git checkout vercel
@@ -33,19 +36,21 @@ git push origin vercel
 
 ## 🎯 Key Differences
 
-| Feature | Railway (master) | Vercel (vercel) |
-|---------|------------------|-----------------|
-| **Cost** | Paid | Free |
-| **Database** | Full SQLite/PostgreSQL | SQLite (read-only) |
-| **File Uploads** | ✅ Full support | ⚠️ Limited |
-| **Cache** | File-based | Memory-based |
-| **Static Files** | WhiteNoise | CDN optimized |
-| **Requirements** | `requirements.txt` | `requirements-vercel.txt` |
+| Feature          | Railway (master)       | Vercel (vercel)           |
+| ---------------- | ---------------------- | ------------------------- |
+| **Cost**         | Paid                   | Free                      |
+| **Database**     | Full SQLite/PostgreSQL | SQLite (read-only)        |
+| **File Uploads** | ✅ Full support        | ⚠️ Limited                |
+| **Cache**        | File-based             | Memory-based              |
+| **Static Files** | WhiteNoise             | CDN optimized             |
+| **Requirements** | `requirements.txt`     | `requirements-vercel.txt` |
 
 ## 📝 Environment Variables
 
 ### For Railway (master branch)
+
 Set these in Railway dashboard:
+
 ```
 SECRET_KEY=your-secret-key
 DEBUG=False
@@ -56,7 +61,9 @@ RAPIDAPI_HOST=instagram120.p.rapidapi.com
 ```
 
 ### For Vercel (vercel branch)
+
 Set these in Vercel dashboard:
+
 ```
 SECRET_KEY=your-secret-key
 DEBUG=False
@@ -103,4 +110,4 @@ git push origin vercel
 
 ---
 
-**🎉 You're all set! You can now switch between paid and free hosting seamlessly!** 
+**🎉 You're all set! You can now switch between paid and free hosting seamlessly!**
