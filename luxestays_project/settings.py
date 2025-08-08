@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 ]
 
 TAILWIND_APP_NAME = 'theme'
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"  # Commented out for Vercel deployment
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -91,7 +91,7 @@ MIDDLEWARE = [
     # "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 ROOT_URLCONF = 'luxestays_project.urls'
 

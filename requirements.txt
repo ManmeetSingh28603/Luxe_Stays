@@ -17,6 +17,9 @@ python-decouple==3.8
 # Static Files & Deployment
 whitenoise==6.7.0
 
+# Django Apps
+django-tailwind==4.0.1
+
 # Utilities
 pytz==2024.1
 certifi==2024.12.14 
