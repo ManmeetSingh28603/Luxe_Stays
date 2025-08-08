@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "src": "luxestays_project/wsgi_vercel.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "luxestays_project/wsgi_vercel.py"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": ".",
+    "DJANGO_SETTINGS_MODULE": "luxestays_project.settings_vercel"
+  }
+} 
